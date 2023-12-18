@@ -1,5 +1,5 @@
-import React from 'react';
-import { colors, recipeList } from '../Constant';
+import React from 'react'; 
+import { colors, donutsList } from '../Donuts';
 import { View, Text, StyleSheet, ScrollView, Pressable, Image, TouchableOpacity, FlatList } from 'react-native';
 import { FontAwesome } from "@expo/vector-icons";
 import { useNavigation } from '@react-navigation/native';
@@ -50,7 +50,7 @@ const AllProducts = () => {
     <ScrollView>
       <Text style={styles.Donuts}>Donuts</Text>
       <FlatList
-        data={recipeList}
+        data={donutsList}
         horizontal
         renderItem={renderItem}
         keyExtractor={(item) => item.id.toString()}
