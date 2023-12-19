@@ -10,12 +10,11 @@ export const donutsList = [
     {
 		id: "01",
 		name: "Baked S'mores ",
-		image: require("../assets/donutslist/Baked S'mores Donuts.jpg"),
+		image: "https://i.imgur.com/LithxOs.jpg", 
 		rating: "4.2", 
 		time: "₱ 28",  
 		color: "#006A4E",
-		description:
-			"A delightful and refreshing dish featuring fresh tuna mixed with zesty lime juice and the crunch of red onion and avocado.", 
+		description: "A delightful and refreshing dish featuring fresh tuna mixed with zesty lime juice and the crunch of red onion and avocado.", 
 	},
     {
 		id: "02",
