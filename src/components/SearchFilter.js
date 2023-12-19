@@ -8,10 +8,10 @@ const SearchFilter = ({ icon, placeholder }) => {
 			style={{
 				backgroundColor: "#fff",
 				flexDirection: "row",
-				paddingVertical: 16,
+				paddingVertical: 10,
 				borderRadius: 8,
 				paddingHorizontal: 16,
-				marginVertical: 16,
+				marginVertical: 14,
 
 				shadowColor: "#000",
 				shadowOffset: { width: 0, height: 4 },

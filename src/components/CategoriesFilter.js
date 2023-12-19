@@ -20,11 +20,11 @@ const CategoriesFilter = () => {
               key={index}
               onPress={() => handleCategoryPress(category)}
               style={{
-                backgroundColor: "#FFC0CB",
+                backgroundColor: "#A64c3d", 
                 marginRight: 20,
-                borderRadius: 8,
+                borderRadius: 20,
                 paddingHorizontal: 16,
-                paddingVertical: 10,
+                paddingVertical: 8,
                 shadowColor: "#000",
                 shadowOffset: { width: 0, height: 4 },
                 shadowOpacity: 0.1,
@@ -34,8 +34,8 @@ const CategoriesFilter = () => {
             >
               <Text
                 style={{
-                  color: "#000",
-                  fontSize: 18,
+                  color: "#fff",
+                  fontSize: 17,
                 }}
               >
                 {category.category}
