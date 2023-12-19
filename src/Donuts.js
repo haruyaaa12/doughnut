@@ -10,7 +10,7 @@ export const donutsList = [
     {
 		id: "01",
 		name: "Baked S'mores ",
-		image: "https://i.imgur.com/LithxOs.jpg", 
+		image: require("../assets/donutslist/BakedS'moresDonuts.jpg"),
 		rating: "4.2", 
 		time: "₱ 28",  
 		color: "#006A4E",
