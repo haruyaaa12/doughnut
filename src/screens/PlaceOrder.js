@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, TextInput, Modal, Button, ScrollView } from 'react-native'; 
+import { View, Text, StyleSheet, TouchableOpacity, TextInput, Modal, Button, ScrollView, Image } from 'react-native'; 
 import { FontAwesome } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 
-const PlaceOrder = () => {
+const PlaceOrder = () => { 
   const navigation = useNavigation();
   const [personalInfo1, Name] = useState('');
   const [personalInfo2, Surname] = useState('');
@@ -25,7 +25,7 @@ const PlaceOrder = () => {
       <FontAwesome
         name={value ? 'check-square' : 'square-o'}
         size={24}
-        color={'#B22222'}  
+        color={'#A64c3d'}  
       />
     </TouchableOpacity>
   );
@@ -153,25 +153,27 @@ const PlaceOrder = () => {
         }}
       >
         <View style={styles.modalContainer}>
-          <View style={styles.modalContent}>
-    <TouchableOpacity onPress={() => navigation.navigate("RecipeList")} style={styles.button}>
-      <Text style={styles.buttonText}>Close</Text>
-    </TouchableOpacity>
-    </View>
-</View>
+          <View style={styles.modalContent}> 
+            <Image
+              source={{ uri: 'https://i.imgur.com/JNxCzOc.png' }}
+              style={styles.modalImage}
+            />
+            <Text style={styles.order}>Order Placed Successfully</Text>
+            <TouchableOpacity
+              onPress={() => navigation.navigate('RecipeList')}
+              style={styles.buttonm}
+            > 
+              <Text style={styles.buttonTextclose}>Close</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
       </Modal>
     </View>
     </ScrollView>
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    paddingHorizontal: 20,
-  },
+const styles = StyleSheet.create({  
   section: {
     width: '100%',
     marginBottom: 20,
@@ -219,37 +221,70 @@ const styles = StyleSheet.create({
   },
   ageInput: {
     width: '30%', // Adjusted width for the Age input
-  },
-  button: {
-		backgroundColor: '#B22222',
-    	paddingVertical: 5,
-    	paddingHorizontal: 20,
-    	borderRadius: 20, 
-      marginBottom: 30,
-	},
-
+  },  
 	buttonText: {
-		fontSize: 18,
+		fontSize: 17,
     	color: '#fff',
     	fontWeight: 'bold',
+      alignSelf: 'center', 
+      shadowOpacity: 100,
+    textShadowColor: '#461d17', // Shadow color
+    textShadowOffset: { width: 0.5, height: 0.5 }, // Shadow offset
+    textShadowRadius: 2, 
 	},
+  buttonTextclose: {
+    fontSize: 15,
+    	color: '#fff',
+    	fontWeight: 'bold',
+      alignSelf: 'center',
+      shadowOpacity: 100,
+    textShadowColor: '#461d17', // Shadow color
+    textShadowOffset: { width: 0.5, height: 0.5 }, // Shadow offset
+    textShadowRadius: 2, 
+  },
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    margin: 20,
+  },
   modalContainer: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'rgba(0, 0, 0, 0.5)', // Semi-transparent background
+    backgroundColor: 'rgba(0, 0, 0, 0.5)', 
   },
   modalContent: {
     backgroundColor: '#fff',
-    borderRadius: 10,
-    padding: 20,
     alignItems: 'center',
-    width: '80%',
+    justifyContent: 'center',
+    padding: 15,
+    borderRadius: 10,
+    width: 220,
+    height: 210,
   },
-  modalText: {
-    fontSize: 18,
-    marginBottom: 20,
+  modalImage: {
+    width: 130,
+    height: 130, 
   },
+  button: {
+    backgroundColor: '#A64c3d',
+    paddingVertical: 5,
+    paddingHorizontal: 20,
+    borderRadius: 20, 
+    marginBottom: 30, 
+    width: 150,
+    height: 40,
+  },  
+  buttonm: {
+    backgroundColor: '#A64c3d',
+    paddingVertical: 5,
+    paddingHorizontal: 20,
+    borderRadius: 20, 
+    marginBottom: 30, 
+    width: 100,
+    height: 30,
+  },  
   checkboxContainer: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -257,8 +292,14 @@ const styles = StyleSheet.create({
   },
   checkboxText: {
     marginLeft: 8,
-    fontSize: 16,
+    fontSize: 16, 
   },
+  order: {
+    color: '#000',
+    marginBottom: 10,
+    fontSize: 15,
+    fontWeight: 'bold',
+  },  
 });
 
 export default PlaceOrder; 

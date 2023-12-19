@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { colors, recipeList } from '../Constant';
+import { bestSellers } from '../Constant';
 import { View, Text, StyleSheet, ScrollView, Pressable, Image, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
@@ -7,7 +7,7 @@ const Next = () => {
   const navigation = useNavigation();
   // Create a state object to store quantity for each item
   const [quantities, setQuantities] = useState(
-    recipeList.reduce((acc, item) => {
+    bestSellers.reduce((acc, item) => {
       acc[item.id] = 1;
       return acc;
     }, {})
@@ -35,7 +35,7 @@ const Next = () => {
       
       <ScrollView contentContainerStyle={styles.container}>
         <Text style={styles.summary}>Order Summary</Text>
-      {recipeList.map((item) => (
+      {bestSellers.map((item) => (
         <Pressable
           key={item.id.toString()}
           onPress={() => navigation.navigate('RecipeDetail', { item })}
@@ -94,17 +94,18 @@ const Next = () => {
 const styles = StyleSheet.create({
   itemContainer: {
     flexDirection: 'row',
+    justifyContent: 'space-between',
     alignItems: 'center',
     paddingHorizontal: 16,
-    marginBottom: 20, 
+    marginBottom: 20,
     marginLeft: 15,
-    marginRight: 10,  
+    marginRight: 10,
   },
   imageContainer: {
     marginRight: 16,
-    borderWidth: 2, // Adding black border to the image
-    borderColor: '#B22222', // Setting the color to black
-    borderRadius: 8, // Adjust the border radius as needed
+    borderWidth: 2,
+    borderColor: '#B22222',
+    borderRadius: 8,
   },
   image: {
     width: 80,
@@ -120,8 +121,9 @@ const styles = StyleSheet.create({
   },
   time: {
     fontSize: 14,
-    marginLeft: 10,
-    color: '#999',
+    color: '#666',
+    marginLeft: 'auto',
+    marginTop: 40,
   },
   rowContainer: {
     flexDirection: 'row',
@@ -136,6 +138,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     marginTop: 8,
+    paddingVertical: 5, 
   },
   quantityControls: {
     flexDirection: 'row',
@@ -143,14 +146,15 @@ const styles = StyleSheet.create({
     marginLeft: 8,
   },
   quantityButton: {
-    paddingHorizontal: 8,
-    paddingVertical: 4,
+    paddingHorizontal: 5, // Adjust button padding
+    paddingVertical: 1, // Adjust button padding
     borderWidth: 1,
     borderColor: '#999',
     borderRadius: 4,
   },
   quantity: {
     marginHorizontal: 8,
+    fontSize: 10, // Adjust font size as needed
   },
   line: {
     height: 1,
@@ -158,23 +162,24 @@ const styles = StyleSheet.create({
     marginBottom: 10, 
     marginTop: 20,
     },
-  subtotalContainer: { 
-    paddingRight: 16,
-    flexDirection: 'row',  
-    alignItems: 'center', 
-  }, 
-  subtotalValue: {
-    fontSize: 13, 
-    color: '#333',
-    marginLeft: 10,  
-  },
-  subtotalText: {
-    fontSize: 14, 
-    color: '#333', 
-    alignSelf: "flex-start",
-    marginLeft: 40,
-    marginRight: 150,
-  },
+    subtotalContainer: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'space-between', // Align text elements
+      paddingRight: 16,
+      marginBottom: 5, // Adjust margin bottom
+    },
+    subtotalText: {
+      fontSize: 14,
+      color: '#333',
+      marginLeft: 40,
+    },
+    subtotalValue: {
+      fontSize: 14,
+      color: '#333',
+      fontWeight: 'bold',
+      marginRight: 30,
+    },
   summary: {
     fontSize: 20,
     fontWeight: 'bold',
@@ -183,42 +188,44 @@ const styles = StyleSheet.create({
     marginTop: 50,
     marginLeft: 20,
   },
-  shippingContainer: { 
-    paddingRight: 16,
-    flexDirection: 'row',  
-    alignItems: 'center', 
-  }, 
-  shippingValue: {
-    fontSize: 13, 
-    color: '#333',
-    marginLeft: 10,  
+  shippingContainer: {
+    flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'space-between', // Align text elements
+      paddingRight: 16,
+      marginBottom: 5, // Adjust margin bottom
   },
   shippingText: {
     fontSize: 14, 
-    color: '#333', 
-    alignSelf: "flex-start",
+    color: '#333',
     marginLeft: 40,
-    marginRight: 150,
-  },  
-  totalContainer: { 
-    paddingRight: 16,
-    flexDirection: 'row',  
-    alignItems: 'center', 
-  }, 
-  totalValue: {
-    fontSize: 13, 
+  },
+  shippingValue: {
+    fontSize: 14,
+    color: '#333',
     fontWeight: 'bold',
-    color: '#FF0000',
-    marginLeft: 10,  
+    marginRight: 30,
+  },
+
+  totalContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between', 
+    paddingRight: 16,
+    marginBottom: 5,  
   },
   totalText: {
-    fontSize: 14, 
+    fontSize: 14,
+    color: '#FF0000',
     fontWeight: 'bold',
-    color: '#FF0000', 
-    alignSelf: "flex-start",
     marginLeft: 40,
-    marginRight: 175,
-  },  
+  },
+  totalValue: {
+    fontSize: 14,
+    color: '#FF0000',
+    fontWeight: 'bold',
+    marginRight: 30,
+  },
   line1: {
     height: 2,
     backgroundColor: '#d3d3d3',
@@ -226,21 +233,23 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   buttonText: {
-    fontSize: 18,
+    fontSize: 17,
     color: '#fff',
     fontWeight: 'bold',
     alignSelf: "center",
+    shadowOpacity: 100,
+    textShadowColor: '#461d17', // Shadow color
+    textShadowOffset: { width: 0.5, height: 0.5 }, // Shadow offset
+    textShadowRadius: 2, 
   },
   buttonContainer: {
-		backgroundColor: '#B22222',
-    	paddingVertical: 5,
-    	paddingHorizontal: 20,
-    	borderRadius: 20,
-    	marginTop: 10,
-      marginBottom: 20,
-      width: 120,
-      height: 40,
-      alignSelf: "center",
+		backgroundColor: '#A64c3d',
+    paddingVertical: 5,
+    paddingHorizontal: 20,
+    borderRadius: 20,   
+    width: 150,
+    height: 40,
+    alignSelf: 'center',
 	},
 });
 export default Next;

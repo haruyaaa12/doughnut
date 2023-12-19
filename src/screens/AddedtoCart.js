@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { Image, View, Text, StyleSheet, Pressable, FlatList, TouchableOpacity } from 'react-native';
+import { Image, View, Text, StyleSheet, Pressable, FlatList, TouchableOpacity, ImageBackground } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
-import { colors, recipeList } from '../Constant'; // Check the correct path for the constants
+import { colors, recipeList, bestSellers, cupcakeList, drinksList } from '../Constant'; // Check the correct path for the constants
 
 const AddToCart = () => {
   const navigation = useNavigation();
@@ -30,7 +30,7 @@ const AddToCart = () => {
         <View style={styles.imageContainer}>
           <Image
             source={item.image}
-            style={{ width: 80, height: 80, resizeMode: 'cover', borderRadius: 8 }}
+            style={{ width: 70, height: 70, resizeMode: 'cover', borderRadius: 8 }}
           />
         </View>
         <View style={styles.textContainer}>
@@ -49,39 +49,51 @@ const AddToCart = () => {
     // Add logic for button press action
   };
 
-  return (
+  return ( 
+    <ImageBackground
+    source={{ uri: 'https://i.imgur.com/j8igjlR.jpg' }}
+    style={styles.container}
+  > 
     <View style={styles.container}>
       <Text style={styles.cartText}>Your Cart</Text>
       <FlatList
-        data={recipeList}
+        data={bestSellers} 
         renderItem={renderItem}
         keyExtractor={(item) => item.id.toString()}
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.listContainer}
-      />
+      />  
       <View style={styles.buttonContainer}>
         <TouchableOpacity onPress={() => navigation.navigate("Next")} style={styles.button}>
           <Text style={styles.buttonText}>Review Order</Text>
         </TouchableOpacity>
       </View>
-    </View>
+    </View> 
+    </ImageBackground>
   );
 };
 
-const styles = StyleSheet.create({
+const styles = StyleSheet.create({ 
   container: {
     flex: 1,
+  },
+  overlay: {
+    flex: 1,
+    backgroundColor: 'rgba(255, 192, 203, 0.7)',  
     paddingVertical: 16,
     paddingHorizontal: 16,
-    backgroundColor: 'pink',
   },
   listContainer: {
     marginTop: 16,
+    marginLeft: 15,
+    marginRight: 15,
   },
   cartText: {
     fontSize: 24,
     fontWeight: 'bold',
     marginTop: 50, 
+    marginLeft: 15,
+    color: '#fff',
   },
   recipeItem: {
     backgroundColor: colors.COLOR_LIGHT,
@@ -89,7 +101,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.1,
     shadowRadius: 7,
-    borderRadius: 16,
+    borderRadius: 10,
     marginBottom: 16,
     padding: 12,
     flexDirection: 'row',
@@ -100,25 +112,28 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   imageContainer: {
-    marginRight: 12,
-    marginLeft: 15,
+    marginRight: 5,
+    marginLeft: 5,
   },
   textContainer: {
     flex: 1,
-  },
+  },   
   nameTimeContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    alignItems: 'center', // Ensure vertical centering
+    paddingRight: 10, // Add some padding to the right
   },
   recipeName: {
-    fontSize: 18,
+    fontSize: 15,
     fontWeight: 'bold',
     alignSelf: 'center',
   },
   recipeTime: {
     fontSize: 14,
     color: '#666',
-    marginRight: 25,
+    marginLeft: 'auto',
+    marginTop: 50, // Move the time to the right side 
   },
   buttonContainer: {
     position: 'absolute',
@@ -126,15 +141,22 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   button: {
-    backgroundColor: colors.COLOR_PRIMARY,
-    paddingVertical: 12,
-    paddingHorizontal: 24,
-    borderRadius: 30,
+    backgroundColor: '#A64c3d',
+    paddingVertical: 5,
+    paddingHorizontal: 20,
+    borderRadius: 20,   
+    width: 150,
+    height: 40,
   },
   buttonText: {
+    fontSize: 17,
     color: '#fff',
-    fontSize: 16,
     fontWeight: 'bold',
+    alignSelf: "center",
+    shadowOpacity: 100,
+    textShadowColor: '#461d17', // Shadow color
+    textShadowOffset: { width: 0.5, height: 0.5 }, // Shadow offset
+    textShadowRadius: 2, 
   },
 });
 
