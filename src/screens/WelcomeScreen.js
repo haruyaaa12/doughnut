@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
 	},
 
 	buttonContainer: {
-		backgroundColor: '#B22222',
+		backgroundColor: '#A64c3d',
     	paddingVertical: 5,
     	paddingHorizontal: 20,
     	borderRadius: 20,
@@ -51,8 +51,7 @@ const styles = StyleSheet.create({
 
 	buttonText: {
 		fontSize: 18,
-    	color: '#fff',
-    	fontWeight: 'bold',
+    	color: '#fff', 
 	},
 	
 });
