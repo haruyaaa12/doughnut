@@ -1,9 +1,19 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, TextInput, Modal, Button, ScrollView, Image } from 'react-native'; 
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  TextInput,
+  Modal,
+  Button,
+  ScrollView,
+  Image,
+} from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 
-const PlaceOrder = () => { 
+const PlaceOrder = () => {
   const navigation = useNavigation();
   const [personalInfo1, Name] = useState('');
   const [personalInfo2, Surname] = useState('');
@@ -25,7 +35,7 @@ const PlaceOrder = () => {
       <FontAwesome
         name={value ? 'check-square' : 'square-o'}
         size={24}
-        color={'#A64c3d'}  
+        color={'#A64c3d'}
       />
     </TouchableOpacity>
   );
@@ -37,149 +47,142 @@ const PlaceOrder = () => {
   };
 
   return (
-    <ScrollView contentContainerStyle={styles.scrollContainer}> 
-    <View style={styles.container}> 
-
-      {/* Personal Information */}
-      <View style={styles.section}>
-        <Text style={styles.title}>Personal Information</Text>
-        {/* Grouping Name and Surname inputs horizontally */}
-        <View style={styles.inputGroup}>
-          <TextInput
-            style={[styles.input, styles.halfInput]}
-            placeholder="Name"
-            value={personalInfo1}
-            onChangeText={Name}
-          />
-          <TextInput
-            style={[styles.input, styles.surname]}
-            placeholder="Surname"
-            value={personalInfo2}
-            onChangeText={Surname}
-          />
-        </View>
-        {/* Email, Mobile Number, Birthdate, Age inputs */}
-        <TextInput
-          style={styles.input}
-          placeholder="Email"
-          value={personalInfo3}
-          onChangeText={Email}
-        />
-        <TextInput
-          style={styles.input}
-          placeholder="Mobile Number"
-          value={personalInfo4}
-          onChangeText={MobileNum}
-        />
-        {/* Grouping Birthdate and Age inputs horizontally */}
-        <View style={styles.inputGroup}>
-          <TextInput
-            style={[styles.input, styles.halfInput]}
-            placeholder="Birthdate"
-            value={personalInfo5}
-            onChangeText={Birthdate}
-          />
-          <TextInput
-            style={[styles.input, styles.ageInput]}
-            placeholder="Age"
-            value={personalInfo6}
-            onChangeText={Age}
-          />
-        </View>
-      </View>
-
-      {/* Address */}
-      <View style={styles.section}>
-        <Text style={styles.title2}>Address</Text>
-        {/* Address-related inputs */}
-        <TextInput
-          style={styles.input}
-          placeholder="Apartment/Suite/etc."
-          value={personalInfo7}
-          onChangeText={Apartment}
-        />
-        <View style={styles.inputGroup}>
-          <TextInput
-            style={[styles.input, styles.halfInput]}
-            placeholder="City"
-            value={personalInfo8}
-            onChangeText={City}
-          />
-          <TextInput
-            style={[styles.input, styles.zip]}
-            placeholder="ZIP"
-            value={personalInfo9}
-            onChangeText={zip}
-          />
-        </View>
-        <TextInput
-          style={styles.input}
-          placeholder="State/Province/Region"
-          value={personalInfo10}
-          onChangeText={State}
-        />
-        <TextInput
-          style={styles.input}
-          placeholder="Country"
-          value={personalInfo11}
-          onChangeText={Country}
-        />
-      </View>
-
-      {/* Payment Method */}
-      <View style={styles.section}>
-        <Text style={styles.title3}>Payment Method</Text>
-        <View style={styles.checkboxContainer}>
-          {renderCheckBox(paymentMethod === 'COD', () => setPaymentMethod('COD'))}
-          <Text style={styles.checkboxText}>Cash on Delivery</Text>
-        </View>
-        <View style={styles.checkboxContainer}>
-          {renderCheckBox(paymentMethod === 'Online', () => setPaymentMethod('Online'))}
-          <Text style={styles.checkboxText}>Pay Online</Text>
-        </View>
-      </View>
-
-      {/* Place Order Button */}
-      <TouchableOpacity onPress={handlePlaceOrder} style={styles.button}>
-        <Text style={styles.buttonText}>Place Order</Text>
-      </TouchableOpacity>
-
-      <Modal
-        animationType="slide"
-        transparent={true}
-        visible={modalVisible}
-        onRequestClose={() => {
-          setModalVisible(false);
-        }}
-      >
-        <View style={styles.modalContainer}>
-          <View style={styles.modalContent}> 
-            <Image
-              source={{ uri: 'https://i.imgur.com/JNxCzOc.png' }}
-              style={styles.modalImage}
+    <ScrollView contentContainerStyle={styles.scrollContainer}>
+      <View style={styles.container}>
+        <View style={styles.section}>
+          <Text style={styles.title}>Personal Information</Text>
+          <View style={styles.inputGroup}>
+            <TextInput
+              style={[styles.input, styles.halfInput]}
+              placeholder="Name"
+              value={personalInfo1}
+              onChangeText={Name}
             />
-            <Text style={styles.order}>Order Placed Successfully</Text>
-            <TouchableOpacity
-              onPress={() => navigation.navigate('RecipeList')}
-              style={styles.buttonm}
-            > 
-              <Text style={styles.buttonTextclose}>Close</Text>
-            </TouchableOpacity>
+            <TextInput
+              style={[styles.input, styles.surname]}
+              placeholder="Surname"
+              value={personalInfo2}
+              onChangeText={Surname}
+            />
+          </View>
+          <TextInput
+            style={styles.input}
+            placeholder="Email"
+            value={personalInfo3}
+            onChangeText={Email}
+          />
+          <TextInput
+            style={styles.input}
+            placeholder="Mobile Number"
+            value={personalInfo4}
+            onChangeText={MobileNum}
+          />
+          <View style={styles.inputGroup}>
+            <TextInput
+              style={[styles.input, styles.halfInput]}
+              placeholder="Birthdate"
+              value={personalInfo5}
+              onChangeText={Birthdate}
+            />
+            <TextInput
+              style={[styles.input, styles.ageInput]}
+              placeholder="Age"
+              value={personalInfo6}
+              onChangeText={Age}
+            />
           </View>
         </View>
-      </Modal>
-    </View>
+
+        <View style={styles.section}>
+          <Text style={styles.title2}>Address</Text>
+          <TextInput
+            style={styles.input}
+            placeholder="Apartment/Suite/etc."
+            value={personalInfo7}
+            onChangeText={Apartment}
+          />
+          <View style={styles.inputGroup}>
+            <TextInput
+              style={[styles.input, styles.halfInput]}
+              placeholder="City"
+              value={personalInfo8}
+              onChangeText={City}
+            />
+            <TextInput
+              style={[styles.input, styles.zip]}
+              placeholder="ZIP"
+              value={personalInfo9}
+              onChangeText={zip}
+            />
+          </View>
+          <TextInput
+            style={styles.input}
+            placeholder="State/Province/Region"
+            value={personalInfo10}
+            onChangeText={State}
+          />
+          <TextInput
+            style={styles.input}
+            placeholder="Country"
+            value={personalInfo11}
+            onChangeText={Country}
+          />
+        </View>
+
+        <View style={styles.section}>
+          <Text style={styles.title3}>Payment Method</Text>
+          <View style={styles.checkboxContainer}>
+            {renderCheckBox(paymentMethod === 'COD', () =>
+              setPaymentMethod('COD')
+            )}
+            <Text style={styles.checkboxText}>Cash on Delivery</Text>
+          </View>
+          <View style={styles.checkboxContainer}>
+            {renderCheckBox(paymentMethod === 'Online', () =>
+              setPaymentMethod('Online')
+            )}
+            <Text style={styles.checkboxText}>Pay Online</Text>
+          </View>
+        </View>
+
+        <TouchableOpacity onPress={handlePlaceOrder} style={styles.button}>
+          <Text style={styles.buttonText}>Place Order</Text>
+        </TouchableOpacity>
+
+        <Modal
+          animationType="slide"
+          transparent={true}
+          visible={modalVisible}
+          onRequestClose={() => {
+            setModalVisible(false);
+          }}>
+          <View style={styles.modalContainer}>
+            <View style={styles.modalContent}>
+              <Image
+                source={{ uri: 'https://i.imgur.com/JNxCzOc.png' }}
+                style={styles.modalImage}
+              />
+              <Text style={styles.order}>Order Placed Successfully</Text>
+              <TouchableOpacity
+                onPress={() => navigation.navigate('AppList')}
+                style={styles.buttonm}>
+                <Text style={styles.buttonTextclose}>Close</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </Modal>
+      </View>
     </ScrollView>
   );
 };
 
-const styles = StyleSheet.create({  
+const styles = StyleSheet.create({
   section: {
     width: '100%',
     marginBottom: 20,
   },
   surname: {
-    width: '50%',  
+    width: '50%',
   },
   title: {
     fontSize: 20,
@@ -201,7 +204,7 @@ const styles = StyleSheet.create({
   },
   inputGroup: {
     flexDirection: 'row',
-    justifyContent: 'center',  
+    justifyContent: 'center',
   },
   input: {
     height: 40,
@@ -214,33 +217,33 @@ const styles = StyleSheet.create({
   },
   halfInput: {
     flex: 1,
-    marginRight: 10,   
+    marginRight: 10,
   },
   zip: {
-    width: '30%', // Adjusted width for the Age input
+    width: '30%',
   },
   ageInput: {
-    width: '30%', // Adjusted width for the Age input
-  },  
-	buttonText: {
-		fontSize: 17,
-    	color: '#fff',
-    	fontWeight: 'bold',
-      alignSelf: 'center', 
-      shadowOpacity: 100,
-    textShadowColor: '#461d17', // Shadow color
-    textShadowOffset: { width: 0.5, height: 0.5 }, // Shadow offset
-    textShadowRadius: 2, 
-	},
+    width: '30%',
+  },
+  buttonText: {
+    fontSize: 17,
+    color: '#fff',
+    fontWeight: 'bold',
+    alignSelf: 'center',
+    shadowOpacity: 100,
+    textShadowColor: '#461d17',
+    textShadowOffset: { width: 0.5, height: 0.5 },
+    textShadowRadius: 2,
+  },
   buttonTextclose: {
     fontSize: 15,
-    	color: '#fff',
-    	fontWeight: 'bold',
-      alignSelf: 'center',
-      shadowOpacity: 100,
-    textShadowColor: '#461d17', // Shadow color
-    textShadowOffset: { width: 0.5, height: 0.5 }, // Shadow offset
-    textShadowRadius: 2, 
+    color: '#fff',
+    fontWeight: 'bold',
+    alignSelf: 'center',
+    shadowOpacity: 100,
+    textShadowColor: '#461d17',
+    textShadowOffset: { width: 0.5, height: 0.5 },
+    textShadowRadius: 2,
   },
   container: {
     flex: 1,
@@ -252,7 +255,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'rgba(0, 0, 0, 0.5)', 
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
   },
   modalContent: {
     backgroundColor: '#fff',
@@ -265,26 +268,26 @@ const styles = StyleSheet.create({
   },
   modalImage: {
     width: 130,
-    height: 130, 
+    height: 130,
   },
   button: {
     backgroundColor: '#A64c3d',
     paddingVertical: 5,
     paddingHorizontal: 20,
-    borderRadius: 20, 
-    marginBottom: 30, 
+    borderRadius: 20,
+    marginBottom: 30,
     width: 150,
     height: 40,
-  },  
+  },
   buttonm: {
     backgroundColor: '#A64c3d',
     paddingVertical: 5,
     paddingHorizontal: 20,
-    borderRadius: 20, 
-    marginBottom: 30, 
+    borderRadius: 20,
+    marginBottom: 30,
     width: 100,
     height: 30,
-  },  
+  },
   checkboxContainer: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -292,14 +295,14 @@ const styles = StyleSheet.create({
   },
   checkboxText: {
     marginLeft: 8,
-    fontSize: 16, 
+    fontSize: 16,
   },
   order: {
     color: '#000',
     marginBottom: 10,
     fontSize: 15,
     fontWeight: 'bold',
-  },  
+  },
 });
 
-export default PlaceOrder; 
+export default PlaceOrder;

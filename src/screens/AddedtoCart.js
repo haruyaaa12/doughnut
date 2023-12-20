@@ -1,8 +1,20 @@
 import React, { useState } from 'react';
-import { Image, View, Text, StyleSheet, Pressable, FlatList, TouchableOpacity, ImageBackground } from 'react-native';
+import {
+  Image,
+  View,
+  Text,
+  StyleSheet,
+  Pressable,
+  FlatList,
+  TouchableOpacity,
+  ImageBackground,
+} from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
-import { colors, recipeList, bestSellers, cupcakeList, drinksList } from '../Constant'; // Check the correct path for the constants
+import {
+  colors, 
+  bestSellers, 
+} from '../Constant';
 
 const AddToCart = () => {
   const navigation = useNavigation();
@@ -17,9 +29,8 @@ const AddToCart = () => {
 
   const renderItem = ({ item }) => (
     <Pressable
-      onPress={() => navigation.navigate('RecipeList', { item: item })}
-      style={styles.recipeItem}
-    >
+      onPress={() => navigation.navigate('AppList', { item: item })}
+      style={styles.recipeItem}>
       <View style={styles.recipeInfo}>
         <FontAwesome
           name={selectedRecipes[item.id] ? 'check-square' : 'square-o'}
@@ -30,7 +41,12 @@ const AddToCart = () => {
         <View style={styles.imageContainer}>
           <Image
             source={item.image}
-            style={{ width: 70, height: 70, resizeMode: 'cover', borderRadius: 8 }}
+            style={{
+              width: 70,
+              height: 70,
+              resizeMode: 'cover',
+              borderRadius: 8,
+            }}
           />
         </View>
         <View style={styles.textContainer}>
@@ -44,42 +60,41 @@ const AddToCart = () => {
   );
 
   const handlePress = () => {
-    // Handle button press action here
     console.log('Review order button pressed!');
-    // Add logic for button press action
   };
 
-  return ( 
+  return (
     <ImageBackground
-    source={{ uri: 'https://i.imgur.com/j8igjlR.jpg' }}
-    style={styles.container}
-  > 
-    <View style={styles.container}>
-      <Text style={styles.cartText}>Your Cart</Text>
-      <FlatList
-        data={bestSellers} 
-        renderItem={renderItem}
-        keyExtractor={(item) => item.id.toString()}
-        showsVerticalScrollIndicator={false}
-        contentContainerStyle={styles.listContainer}
-      />  
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity onPress={() => navigation.navigate("Next")} style={styles.button}>
-          <Text style={styles.buttonText}>Review Order</Text>
-        </TouchableOpacity>
+      source={{ uri: 'https://i.imgur.com/j8igjlR.jpg' }}
+      style={styles.container}>
+      <View style={styles.container}>
+        <Text style={styles.cartText}>Your Cart</Text>
+        <FlatList
+          data={bestSellers}
+          renderItem={renderItem}
+          keyExtractor={(item) => item.id.toString()}
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={styles.listContainer}
+        />
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity
+            onPress={() => navigation.navigate('Next')}
+            style={styles.button}>
+            <Text style={styles.buttonText}>Review Order</Text>
+          </TouchableOpacity>
+        </View>
       </View>
-    </View> 
     </ImageBackground>
   );
 };
 
-const styles = StyleSheet.create({ 
+const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
   overlay: {
     flex: 1,
-    backgroundColor: 'rgba(255, 192, 203, 0.7)',  
+    backgroundColor: 'rgba(255, 192, 203, 0.7)',
     paddingVertical: 16,
     paddingHorizontal: 16,
   },
@@ -91,7 +106,7 @@ const styles = StyleSheet.create({
   cartText: {
     fontSize: 24,
     fontWeight: 'bold',
-    marginTop: 50, 
+    marginTop: 50,
     marginLeft: 15,
     color: '#fff',
   },
@@ -117,12 +132,12 @@ const styles = StyleSheet.create({
   },
   textContainer: {
     flex: 1,
-  },   
+  },
   nameTimeContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center', // Ensure vertical centering
-    paddingRight: 10, // Add some padding to the right
+    alignItems: 'center',
+    paddingRight: 10,
   },
   recipeName: {
     fontSize: 15,
@@ -133,18 +148,18 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: '#666',
     marginLeft: 'auto',
-    marginTop: 50, // Move the time to the right side 
+    marginTop: 50,
   },
   buttonContainer: {
     position: 'absolute',
-    bottom: 30, 
+    bottom: 30,
     alignSelf: 'center',
   },
   button: {
     backgroundColor: '#A64c3d',
     paddingVertical: 5,
     paddingHorizontal: 20,
-    borderRadius: 20,   
+    borderRadius: 20,
     width: 150,
     height: 40,
   },
@@ -152,11 +167,11 @@ const styles = StyleSheet.create({
     fontSize: 17,
     color: '#fff',
     fontWeight: 'bold',
-    alignSelf: "center",
+    alignSelf: 'center',
     shadowOpacity: 100,
-    textShadowColor: '#461d17', // Shadow color
-    textShadowOffset: { width: 0.5, height: 0.5 }, // Shadow offset
-    textShadowRadius: 2, 
+    textShadowColor: '#461d17',
+    textShadowOffset: { width: 0.5, height: 0.5 },
+    textShadowRadius: 2,
   },
 });
 

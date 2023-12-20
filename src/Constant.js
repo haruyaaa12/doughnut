@@ -20,7 +20,7 @@ export const categories = [
 	}, 
 ];
 
-export const recipeList = [
+export const donutList = [
 	{
 		id: "01",
 		name: "Scrumptious Baked S'mores Creation ",

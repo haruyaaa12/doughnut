@@ -1,13 +1,12 @@
 import React from "react";
 import { ScrollView, Text, View, TouchableOpacity } from "react-native";
-import { useNavigation } from "@react-navigation/native"; // Import useNavigation hook
+import { useNavigation } from "@react-navigation/native"; 
 import { categories, colors } from "../Constant";
 
 const CategoriesFilter = () => {
-  const navigation = useNavigation(); // Initialize navigation
+  const navigation = useNavigation();  
 
-  const handleCategoryPress = (category) => {
-    // Navigate to another screen with the selected category
+  const handleCategoryPress = (category) => { 
     navigation.navigate("AllProducts", { selectedCategory: category });
   };
 

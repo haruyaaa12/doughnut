@@ -1,6 +1,14 @@
 import React, { useState } from 'react';
 import { bestSellers } from '../Constant';
-import { View, Text, StyleSheet, ScrollView, Pressable, Image, TouchableOpacity } from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  ScrollView,
+  Pressable,
+  Image,
+  TouchableOpacity,
+} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 const Next = () => {
@@ -30,17 +38,15 @@ const Next = () => {
       }));
     }
   };
- 
-    return (
-      
-      <ScrollView contentContainerStyle={styles.container}>
-        <Text style={styles.summary}>Order Summary</Text>
+
+  return (
+    <ScrollView contentContainerStyle={styles.container}>
+      <Text style={styles.summary}>Order Summary</Text>
       {bestSellers.map((item) => (
         <Pressable
           key={item.id.toString()}
-          onPress={() => navigation.navigate('RecipeDetail', { item })}
-          style={styles.itemContainer}
-        >
+          onPress={() => navigation.navigate('ProductDetail', { item })}
+          style={styles.itemContainer}>
           <View style={styles.imageContainer}>
             <Image source={item.image} style={styles.image} />
           </View>
@@ -65,10 +71,10 @@ const Next = () => {
         </Pressable>
       ))}
       {/* Line and Subtotal */}
-      <View style={styles.line1} /> 
+      <View style={styles.line1} />
       <View style={styles.subtotalContainer}>
         <Text style={styles.subtotalText}> Subtotal </Text>
-        <Text style={styles.subtotalValue}>  ₱ 253.74 </Text>
+        <Text style={styles.subtotalValue}> ₱ 253.74 </Text>
       </View>
       <View style={styles.line} />
       <View style={styles.shippingContainer}>
@@ -84,13 +90,15 @@ const Next = () => {
 
       {/* Button Overlay */}
       <View style={styles.buttonContainer}>
-    <TouchableOpacity onPress={() => navigation.navigate("PlaceOrder")} style={styles.button}>
-      <Text style={styles.buttonText}>Next</Text>
-    </TouchableOpacity>
-    </View>
+        <TouchableOpacity
+          onPress={() => navigation.navigate('PlaceOrder')}
+          style={styles.button}>
+          <Text style={styles.buttonText}>Next</Text>
+        </TouchableOpacity>
+      </View>
     </ScrollView>
-    );
-  };
+  );
+};
 const styles = StyleSheet.create({
   itemContainer: {
     flexDirection: 'row',
@@ -138,7 +146,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     marginTop: 8,
-    paddingVertical: 5, 
+    paddingVertical: 5,
   },
   quantityControls: {
     flexDirection: 'row',
@@ -159,44 +167,44 @@ const styles = StyleSheet.create({
   line: {
     height: 1,
     backgroundColor: '#d3d3d3',
-    marginBottom: 10, 
+    marginBottom: 10,
     marginTop: 20,
-    },
-    subtotalContainer: {
-      flexDirection: 'row',
-      alignItems: 'center',
-      justifyContent: 'space-between', // Align text elements
-      paddingRight: 16,
-      marginBottom: 5, // Adjust margin bottom
-    },
-    subtotalText: {
-      fontSize: 14,
-      color: '#333',
-      marginLeft: 40,
-    },
-    subtotalValue: {
-      fontSize: 14,
-      color: '#333',
-      fontWeight: 'bold',
-      marginRight: 30,
-    },
+  },
+  subtotalContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between', // Align text elements
+    paddingRight: 16,
+    marginBottom: 5, // Adjust margin bottom
+  },
+  subtotalText: {
+    fontSize: 14,
+    color: '#333',
+    marginLeft: 40,
+  },
+  subtotalValue: {
+    fontSize: 14,
+    color: '#333',
+    fontWeight: 'bold',
+    marginRight: 30,
+  },
   summary: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: '#333', 
+    color: '#333',
     marginBottom: 10,
     marginTop: 50,
     marginLeft: 20,
   },
   shippingContainer: {
     flexDirection: 'row',
-      alignItems: 'center',
-      justifyContent: 'space-between', // Align text elements
-      paddingRight: 16,
-      marginBottom: 5, // Adjust margin bottom
+    alignItems: 'center',
+    justifyContent: 'space-between', // Align text elements
+    paddingRight: 16,
+    marginBottom: 5, // Adjust margin bottom
   },
   shippingText: {
-    fontSize: 14, 
+    fontSize: 14,
     color: '#333',
     marginLeft: 40,
   },
@@ -210,9 +218,9 @@ const styles = StyleSheet.create({
   totalContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between', 
+    justifyContent: 'space-between',
     paddingRight: 16,
-    marginBottom: 5,  
+    marginBottom: 5,
   },
   totalText: {
     fontSize: 14,
@@ -229,27 +237,29 @@ const styles = StyleSheet.create({
   line1: {
     height: 2,
     backgroundColor: '#d3d3d3',
-    marginBottom: 10, 
+    marginBottom: 10,
     marginTop: 20,
   },
   buttonText: {
     fontSize: 17,
     color: '#fff',
     fontWeight: 'bold',
-    alignSelf: "center",
+    alignSelf: 'center',
     shadowOpacity: 100,
-    textShadowColor: '#461d17', // Shadow color
-    textShadowOffset: { width: 0.5, height: 0.5 }, // Shadow offset
+    textShadowColor: '#461d17',
+    textShadowOffset: { width: 0.5, height: 0.5 },
     textShadowRadius: 2, 
   },
   buttonContainer: {
-		backgroundColor: '#A64c3d',
+    backgroundColor: '#A64c3d',
     paddingVertical: 5,
     paddingHorizontal: 20,
-    borderRadius: 20,   
+    borderRadius: 20,
     width: 150,
     height: 40,
-    alignSelf: 'center',
-	},
+    alignSelf: 'center', 
+    marginBottom: 30,
+    marginTop: 30,
+  },
 });
 export default Next;
